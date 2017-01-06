@@ -1,0 +1,12 @@
+{
+  "apps": [{
+    "name": "http-bridge-proxy",
+    "script": "./bin/http-bridge.js",
+    "exec_mode": "cluster",
+    "instances": 5,
+    "max_memory_restart": "1G",
+    "autorestart": true,
+    "args": ["-P", "--local-port", "3001", "--debug"],
+    "log_date_format" : "YYYY-MM-DD HH:mm:ss Z"
+  }]
+}

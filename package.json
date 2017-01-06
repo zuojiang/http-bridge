@@ -1,0 +1,40 @@
+{
+  "name": "http-bridge",
+  "version": "1.0.0",
+  "description": "To expose a local server behind a firewall to the internet by an internet server",
+  "scripts": {
+    "start": "babel-node ./test/server.js",
+    "test": "babel-node ./test/client.js",
+    "compile": "babel -d ./lib ./src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zuojiang/http-bridge.git"
+  },
+  "keywords": [
+    "http",
+    "bridge",
+    "firewall",
+    "expose"
+  ],
+  "bin": {
+    "http-bridge": "./bin/http-bridge.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0"
+  },
+  "author": "zuojiang",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.9.0"
+  },
+  "bugs": {
+    "url": "https://github.com/zuojiang/http-bridge/issues"
+  },
+  "homepage": "https://github.com/zuojiang/http-bridge#readme",
+  "directories": {
+    "test": "test"
+  }
+}
