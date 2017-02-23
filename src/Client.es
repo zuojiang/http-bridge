@@ -15,6 +15,7 @@ export class Client {
       remotePort=10000,
       forwardHost='127.0.0.1',
       forwardPort=80,
+      routeFile=null,
       poolSize=20,
       localServer=null,
       debug=false,
@@ -26,6 +27,7 @@ export class Client {
       localServer,
       forwardHost,
       forwardPort,
+      routeFile,
       debug,
     })
 

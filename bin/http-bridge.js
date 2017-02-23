@@ -7,7 +7,7 @@ var Client = require('../lib/Client').Client;
 var Proxy = require('../lib/Proxy').Proxy;
 
 program.version(pkg.version)
-  .option('--debug', 'Output debug info.')
+  .option('--output', 'Output log info.')
   .option('-S, --server', 'Server mode.')
   .option('-C, --client', 'Client mode.')
   .option('-P, --proxy', 'Proxy mode.')
@@ -23,6 +23,7 @@ program.version(pkg.version)
   .option('--forward-host <hostname>', 'Set host of the destination server.')
   .option('--forward-port <port>', 'Set port of the destination server.')
   .option('--local-port <port>', 'Set port of the proxy server.')
+  .option('--route-file <json>', 'A route file.')
 
   .parse(process.argv);
 
@@ -31,7 +32,7 @@ if (program.server) {
     httpPort: program.httpPort,
     netPort: program.netPort,
     maxPoolSize: program.maxPoolSize,
-    debug: program.debug
+    debug: program.output
   })
 } else if (program.client) {
   new Client({
@@ -39,15 +40,17 @@ if (program.server) {
     remotePort: program.remotePort,
     forwardHost: program.forwardHost,
     forwardPort: program.forwardPort,
+    routeFile: program.routeFile,
     poolSize: program.poolSize,
-    debug: program.debug
+    debug: program.output
   })
 } else if (program.proxy) {
   new Proxy({
     forwardHost: program.forwardHost,
     forwardPort: program.forwardPort,
     localPort: program.localPort,
-    debug: program.debug
+    routeFile: program.routeFile,
+    debug: program.output
   })
 } else {
   program.outputHelp()

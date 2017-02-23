@@ -1,10 +1,11 @@
 {
   "name": "http-bridge",
-  "version": "1.0.0",
-  "description": "To expose a local server behind a firewall to the internet by an internet server",
+  "version": "1.1.0",
+  "description": "A reverse http proxy.",
   "scripts": {
     "start": "babel-node ./test/server.js",
     "test": "babel-node ./test/client.js",
+    "test-proxy": "babel-node ./test/proxy.js",
     "compile": "babel -d ./lib ./src"
   },
   "repository": {
