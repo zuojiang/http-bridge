@@ -1,5 +1,6 @@
 node_modules
 *.log
+*.tgz
 .*.swp
 .direcotry
 .DS_Store

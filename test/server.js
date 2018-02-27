@@ -1,7 +1,10 @@
-import Server from '../src/Server'
+import createServer from '../src/createServer'
 
-const server = new Server({
-  httpPort: 11010,
-  netPort: 11011,
-  debug: true
-})
+createServer({
+  httpPort: 8080,
+  // filter: () => false,
+}).then(([httpServer, netServer]) => {
+  httpServer.on('request', req => {
+    console.log('[Server][%s] %s', req.method, req.url)
+  })
+}, console.error)

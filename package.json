@@ -1,11 +1,12 @@
 {
   "name": "http-bridge",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "A reverse http proxy.",
   "scripts": {
-    "start": "babel-node ./test/server.js",
-    "test": "babel-node ./test/client.js",
-    "test-proxy": "babel-node ./test/proxy.js",
+    "start": "node ./bin/http-bridge -S --verbose --http-port 8080 --ip-list-file ./test/iplist.json",
+    "test": "node ./bin/http-bridge -C --verbose --route-file ./test/route.json",
+    "server": "babel-node ./test/server.js",
+    "client": "babel-node ./test/client.js",
     "compile": "babel -d ./lib ./src"
   },
   "repository": {
@@ -23,13 +24,16 @@
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-stage-0": "^6.16.0"
   },
-  "author": "zuojiang",
+  "author": "zuojiang <zuojiang.wang@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "commander": "^2.9.0"
+    "babel-runtime": "^6.26.0",
+    "commander": "^2.9.0",
+    "log-update": "^2.3.0"
   },
   "bugs": {
     "url": "https://github.com/zuojiang/http-bridge/issues"
