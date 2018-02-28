@@ -22,6 +22,7 @@
   "bin": {
     "http-bridge": "./bin/http-bridge.js"
   },
+  "preferGlobal": true,
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-plugin-transform-runtime": "^6.23.0",
@@ -33,7 +34,8 @@
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "commander": "^2.9.0",
-    "log-update": "^2.3.0"
+    "log-update": "^2.3.0",
+    "moment": "^2.20.1"
   },
   "bugs": {
     "url": "https://github.com/zuojiang/http-bridge/issues"

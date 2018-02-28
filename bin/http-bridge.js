@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var Path = require('path')
+var moment = require('moment')
 var program = require('commander');
 var logUpdate = require('log-update')
 var pkg = require('../package.json');
@@ -43,7 +44,7 @@ if (program.server) {
     if (program.verbose) {
       console.log('Listening on %s(http) and %s(net)', httpServer.address().port, netServer.address().port);
       httpServer.on('request', req => {
-        console.log('[Server][%s] %s', req.method, req.url)
+        console.log('[Server][%s][%s] %s', datetime(), req.method, req.url)
       })
     }
   }, console.error)
@@ -64,7 +65,7 @@ if (program.server) {
     if (program.verbose) {
       logUpdate('Listening on '+ server.address().port)
       server.on('request', (req, res) => {
-        console.log('[Client][%s] %s', req.method, req.url)
+        console.log('[Client][%s][%s] %s', datetime(), req.method, req.url)
       })
     }
   }, console.error)
@@ -79,7 +80,7 @@ if (program.server) {
     if (program.verbose) {
       console.log('Listening on %s', server.address().port)
       server.on('request', (req, res) => {
-        console.log('[Proxy][%s] %s', req.method, req.url)
+        console.log('[Proxy][%s][%s] %s', datetime(), req.method, req.url)
       })
     }
   })
@@ -117,7 +118,11 @@ function filter (socket) {
     }
   }
   if (value && program.verbose) {
-    console.log('[Server][%s] %s:%s', socket.remoteFamily, socket.remoteAddress, socket.remotePort)
+    console.log('[Server][%s][%s] %s:%s', datetime(), socket.remoteFamily, socket.remoteAddress, socket.remotePort)
   }
   return value
+}
+
+function datetime () {
+  return moment().format()
 }

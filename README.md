@@ -5,9 +5,11 @@
 `http-bridge` is a simple Node.js application,
 to expose a local server behind a firewall to the internet by an internet server.
 
+![deployment](https://raw.githubusercontent.com/zuojiang/http-bridge/master/screenshots/deployment-2.0.0.png)
+
 ### Installation
 
-```
+```sh
 npm install http-bridge -g
 ```
 
