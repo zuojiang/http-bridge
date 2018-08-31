@@ -1,10 +1,10 @@
 {
   "name": "http-bridge",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "A reverse http proxy.",
   "scripts": {
     "start": "node ./bin/http-bridge -S --verbose --http-port 8080 --ip-list-file ./test/iplist.json",
-    "test": "node ./bin/http-bridge -C --verbose --route-file ./test/route.json",
+    "test": "node ./bin/http-bridge -P --verbose --route-file ./test/route.json --redirect-file ./test/redirect.json --change-origin",
     "server": "babel-node ./test/server.js",
     "client": "babel-node ./test/client.js",
     "compile": "babel -d ./lib ./src"

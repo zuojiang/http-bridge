@@ -31,6 +31,7 @@ program.version(pkg.version)
   .option('--local-port <port>', 'Set port of the proxy server.(Default: 7000)')
   .option('--change-origin', 'To change the origin of the host header to the target URL.')
   .option('--route-file <json>', 'A route file.')
+  .option('--redirect-file <json>', 'A redirect file.')
 
   .parse(process.argv);
 
@@ -60,6 +61,7 @@ if (program.server) {
     poolSize: program.poolSize,
     changeOrigin: program.changeOrigin,
     confirmDelay: program.confirmDelay,
+		redirect: redirect,
     route: route,
   }).then(server => {
     if (program.verbose) {
@@ -75,6 +77,7 @@ if (program.server) {
     forwardPort: program.forwardPort,
     localPort: program.localPort,
     changeOrigin: program.changeOrigin,
+		redirect: redirect,
     route: route,
   }).then(server => {
     if (program.verbose) {
@@ -96,13 +99,24 @@ function route(path) {
   if (program.routeFile) {
     var data = readJSON(program.routeFile)
     for (var originPath in data) {
-      var targetPath = data[originPath]
       if (path.indexOf(originPath) == 0) {
-        return targetPath + path.substr(originPath.length)
+        return data[originPath] + path.substr(originPath.length)
       }
     }
   }
   return path
+}
+
+function redirect(url) {
+	if (program.redirectFile) {
+    var data = readJSON(program.redirectFile)
+		for (var originURL in data) {
+			if (url.indexOf(originURL) == 0) {
+				return data[originURL] + url.substr(originURL.length)
+			}
+		}
+	}
+	return url
 }
 
 function filter (socket) {

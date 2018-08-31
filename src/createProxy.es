@@ -6,6 +6,7 @@ export default function ({
   forwardHost = null,
   forwardPort = null,
   server = http.createServer(),
+	redirect = url => url,
   route = path => path,
   localPort = 7000,
   changeOrigin = false,
@@ -13,8 +14,7 @@ export default function ({
 
   server.on('request', (req, res) => {
     const {url, method, headers} = req
-    const {hostname, port, path} = Url.parse(url)
-
+    const {hostname, port, path} = Url.parse(redirect(url) || url)
     const opts = {
       protocol: 'http:',
       host: forwardHost || hostname || 'localhost',
